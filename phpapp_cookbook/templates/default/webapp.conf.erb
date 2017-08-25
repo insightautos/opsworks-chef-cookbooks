@@ -1,5 +1,10 @@
+ServerTokens OS
+LoadModule php5_module modules/libphp-5.6.so
+AddHandler php5-script php
+
 <VirtualHost *:80>
    ServerName <%= @params[:server_name] %>
+   ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
    DocumentRoot <%= @params[:docroot] %>
 
    <Directory <%= @params[:docroot] %>>
